@@ -33,3 +33,7 @@ h1 {
     flex-direction: column;
     gap: 10px;
 }
+#skillInput {
+    background-color: rgb(29, 31, 41);
+    color: white;
+}

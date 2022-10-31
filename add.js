@@ -12,16 +12,16 @@ async function sendData(url, data){
         if (response.ok) {
             const responsedata = await response.json();
             console.log(responsedata);
-            alert("Duomenys issaugoti!")
+            alert("Success")
+            window.location.href='./index.html';
         }
     } catch (error) {
         console.error(error);
-        alert("Klaida! Bandykite dar karta")
+        alert("Error")
     }
 }
 
 document.getElementById("add-a-skill").addEventListener("click", (event) => {
-    // event.preventDefault();
     const skillInput = document.getElementById("skillInput").value;
 
     const data = {

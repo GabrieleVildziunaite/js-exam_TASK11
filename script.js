@@ -1,5 +1,5 @@
 const BASE_URL_SKILL = 'https://melon-potent-period.glitch.me/skills';
-const BASE_URL_ID = 'https://melon-potent-period.glitch.me/skill/:id';
+const BASE_URL_ID = 'https://melon-potent-period.glitch.me/skill';
 
 async function getData(url) {
 	try {
@@ -30,15 +30,35 @@ function populateSkills(data) {
         const skillDelete = document.createElement("td");
         const skillDeleteButton = document.createElement("button");
         skillDeleteButton.classList.add("deleteButton");
+        skillDeleteButton.addEventListener("click", () => {
+			deleteItem(BASE_URL_ID + "/" + dataItem.id);
+		});
         skillDeleteButton.innerText = "detele";
+
 
         skillDelete.append(skillDeleteButton);
         skillRow.append(skillID, skillName, skillDelete);
         wrapper.append(skillRow);
-        
+
 	});
 }
 
+async function deleteItem(url) {
+	try {
+		const response = await fetch(url, {
+			method: "DELETE",
+			headers: {
+				"Content-type": "application/json",
+			},
+		});
+		alert(response.ok ? "Success" : "Not deleted");
+		window.location.reload();
+	} catch (error) {
+        alert("error");
+		console.log(error);
+	}
+}
+
+
 getDataFromUrl(BASE_URL_SKILL);
 
-document.getElementById("add-button").addEventListener("click")
